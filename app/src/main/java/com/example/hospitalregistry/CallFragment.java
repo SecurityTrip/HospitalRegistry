@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ArchiveFragment#newInstance} factory method to
+ * Use the {@link CallFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArchiveFragment extends Fragment {
+public class CallFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class ArchiveFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ArchiveFragment() {
+    public CallFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +34,11 @@ public class ArchiveFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ArchiveFragment.
+     * @return A new instance of fragment CallFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ArchiveFragment newInstance(String param1, String param2) {
-        ArchiveFragment fragment = new ArchiveFragment();
+    public static CallFragment newInstance(String param1, String param2) {
+        CallFragment fragment = new CallFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class ArchiveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_archive, container, false);
+        return inflater.inflate(R.layout.fragment_call, container, false);
     }
 }

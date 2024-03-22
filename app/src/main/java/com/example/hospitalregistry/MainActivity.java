@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new QueueFragment());
             } else if(itemId == R.id.research){
                 replaceFragment(new ResearchFragment());
-            }else if (itemId == R.id.archive){
-                replaceFragment(new ArchiveFragment());
+            }else if (itemId == R.id.call){
+                replaceFragment(new CallFragment());
             } else if (itemId == R.id.profile) {
                 replaceFragment(new PersonFragment());
             }
