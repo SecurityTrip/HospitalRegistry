@@ -6,4 +6,11 @@
     <string name="profile">Profile</string>
     <string name="archive">Archive</string>
     <string name="call_for_doctor">Call for doctor</string>
+    <string name="archiveTextField">Archive</string>
+    <string name="supportTextField">Support</string>
+    <string name="settingsTextField">Settings</string>
+    <string name="services">Services</string>
+    <string name="nameTextField">Name</string>
+    <string name="backButtonText">Back</string>
+    <string name="prompt_username">Username</string>
 </resources>

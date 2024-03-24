@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "971617340172",
+    "project_id": "hospitalregistry-d1893",
+    "storage_bucket": "hospitalregistry-d1893.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971617340172:android:25580a1dd3b3d5b8215729",
+        "android_client_info": {
+          "package_name": "com.example.hospitalregistry"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEkIif9wQqp_F6btRP40u6mrmZr8_Fx1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,12 +1,25 @@
 package com.example.hospitalregistry;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
+
+import com.example.hospitalregistry.databinding.FragmentPersonBinding;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import androidx.fragment.app.Fragment;
+import com.squareup.picasso.Picasso;
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,9 +33,13 @@ public class PersonFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ImageView imageView;
+    private FragmentPersonBinding binding;
 
     public PersonFragment() {
         // Required empty public constructor
@@ -53,12 +70,32 @@ public class PersonFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_person, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_person, container, false);
+
+        // Найдите ImageView по его id
+        imageView = rootView.findViewById(R.id.imageView);
+
+        // Создайте Drawable для плейсхолдера
+        Drawable placeholderDrawable = getResources().getDrawable(R.drawable.avatar);
+
+        // Установите плейсхолдер в ImageView
+        imageView.setImageDrawable(placeholderDrawable);
+
+        // URL вашего аватара
+        String avatarUrl = "https://tommystinctures.com/wp-content/uploads/2020/10/avatar-icon-placeholder-1577909.jpg";
+
+        // Загрузите изображение с использованием Picasso и установите его в ImageView
+        Picasso.get().load(avatarUrl).placeholder(placeholderDrawable).into(imageView);
+
+        return rootView;
     }
+
 }
