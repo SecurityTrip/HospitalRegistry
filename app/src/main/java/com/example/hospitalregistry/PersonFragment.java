@@ -16,9 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
 
 
 /**
@@ -40,6 +46,8 @@ public class PersonFragment extends Fragment {
 
     private ImageView imageView;
     private FragmentPersonBinding binding;
+
+    private TextView name;
 
     public PersonFragment() {
         // Required empty public constructor
@@ -72,6 +80,7 @@ public class PersonFragment extends Fragment {
         }
 
 
+
     }
 
     @Override
@@ -88,6 +97,9 @@ public class PersonFragment extends Fragment {
 
         // Установите плейсхолдер в ImageView
         imageView.setImageDrawable(placeholderDrawable);
+
+        name = rootView.findViewById(R.id.nameField);
+        name.setText(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName());
 
         // URL вашего аватара
         String avatarUrl = "https://tommystinctures.com/wp-content/uploads/2020/10/avatar-icon-placeholder-1577909.jpg";
