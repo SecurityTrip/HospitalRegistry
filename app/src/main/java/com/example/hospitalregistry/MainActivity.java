@@ -58,12 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                     // Пользователь не авторизован
                     // Переход на LoginActivity через FirebaseUI
-                    startActivityForResult(
-                            AuthUI.getInstance()
-                                    .createSignInIntentBuilder()
-                                    .build(),
-                            SIGN_IN_CODE
-                    );
+                    replaceFragment(new NonAuthorizedFragment());
                 } else {
                     // Пользователь авторизован
                     replaceFragment(new PersonFragment());
@@ -99,6 +94,15 @@ public class MainActivity extends AppCompatActivity {
         // Переход на SettingsActivity
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void login(View view){
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .build(),
+                SIGN_IN_CODE
+        );
     }
 
     @Override

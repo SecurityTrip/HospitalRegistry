@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -27,6 +29,13 @@ public class SettingsActivity extends AppCompatActivity {
     public void Back(View view)
     {
         // Переход на SettingsActivity
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void logout(View view){
+        // Выход из аккаунта
+        FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
