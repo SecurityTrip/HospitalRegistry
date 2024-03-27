@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NonAuthorizedFragment"
-    >
+    tools:context=".RegistrationFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,20 +11,20 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/LoginEmailField"
+        <EditText
+            android:id="@+id/RegistrationEmailField"
             android:layout_width="match_parent"
-            android:hint="example@email.com"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/example_email_com"
             android:inputType="text" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/LoginPasswordField"
-            android:hint="Password"
+        <EditText
+            android:id="@+id/RegistrationPasswordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/password"
             android:inputType="text" />
 
         <Space
@@ -33,17 +32,17 @@
             android:layout_height="wrap_content" />
 
         <ProgressBar
-            android:id="@+id/LoginProgressBar"
+            android:id="@+id/RegistrationProgressBar"
             android:visibility="gone"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/LoginButton"
+            android:id="@+id/RegistrationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="Register" />
 
         <Space
             android:layout_width="match_parent"
@@ -54,8 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:onClick="goToRegistration"
-            android:text="Registration" />
+            android:onClick="goToLogin"
+            android:text="Login" />
 
     </LinearLayout>
 </FrameLayout>

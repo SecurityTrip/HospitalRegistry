@@ -14,4 +14,6 @@
     <string name="backButtonText">Back</string>
     <string name="prompt_username">Username</string>
     <string name="logout">LogOut</string>
+    <string name="password">Password</string>
+    <string name="example_email_com">example@email.com</string>
 </resources>

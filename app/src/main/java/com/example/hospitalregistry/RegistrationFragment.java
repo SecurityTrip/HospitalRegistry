@@ -20,15 +20,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class NonAuthorizedFragment extends Fragment {
 
+public class RegistrationFragment extends Fragment {
     EditText editTextEmail, editTextPassword;
-    Button LoginButton;
+    Button RegistrationButton;
     String email, password;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
 
-    public NonAuthorizedFragment() {
+    public RegistrationFragment() {
         // Required empty public constructor
     }
 
@@ -40,14 +40,14 @@ public class NonAuthorizedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View RootView = inflater.inflate(R.layout.fragment_non_authorized, container, false);
 
-        LoginButton = (Button) RootView.findViewById(R.id.LoginButton);
-        editTextEmail = (EditText)RootView.findViewById(R.id.LoginEmailField);
-        editTextPassword = (EditText)RootView.findViewById(R.id.LoginPasswordField);
-        progressBar = (ProgressBar)RootView.findViewById(R.id.LoginProgressBar);
+        View RootView = inflater.inflate(R.layout.fragment_registration, container, false);
 
-        LoginButton.setOnClickListener(new View.OnClickListener() {
+        editTextEmail = (EditText)RootView.findViewById(R.id.RegistrationEmailField);
+        editTextPassword = (EditText)RootView.findViewById(R.id.RegistrationPasswordField);
+        RegistrationButton = (Button) RootView.findViewById(R.id.RegistrationButton);
+        progressBar = (ProgressBar)RootView.findViewById(R.id.RegistrationProgressBar);
+        RegistrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
@@ -69,25 +69,42 @@ public class NonAuthorizedFragment extends Fragment {
 
 
                 }else{
-                    mAuth.signInWithEmailAndPassword(email, password)
+                    mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        FragmentManager fm = getFragmentManager();
-                                        assert fm != null;
-                                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                                        fragmentTransaction.replace(R.id.frame_layout, new PersonFragment());
-                                        fragmentTransaction.commit();
+                                        Toast.makeText(getActivity(), "Registration successful.",
+                                                Toast.LENGTH_SHORT).show();
+
+                                        mAuth.signInWithEmailAndPassword(email, password)
+                                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                                        progressBar.setVisibility(View.GONE);
+                                                        if (task.isSuccessful()) {
+                                                            // Sign in success, update UI with the signed-in user's information
+                                                            FragmentManager fm = getFragmentManager();
+                                                            assert fm != null;
+                                                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                                                            fragmentTransaction.replace(R.id.frame_layout, new PersonFragment());
+                                                            fragmentTransaction.commit();
+                                                        } else {
+                                                        }
+                                                    }
+                                                });
+
                                     } else {
+                                        Toast.makeText(getActivity(), "Registration failed.",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                 }
             }
         });
+
         // Inflate the layout for this fragment
         return RootView;
     }

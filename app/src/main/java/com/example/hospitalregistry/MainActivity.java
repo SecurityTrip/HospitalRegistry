@@ -3,12 +3,12 @@ package com.example.hospitalregistry;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,13 +19,15 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.hospitalregistry.databinding.ActivityMainBinding;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int SIGN_IN_CODE = 1;
-    private ConstraintLayout activity_main;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         replaceFragment(new QueueFragment());
+
+
+
 
 
 
@@ -96,13 +101,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void login(View view){
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .build(),
-                SIGN_IN_CODE
-        );
+    public void goToRegistration(View view){
+        replaceFragment(new RegistrationFragment());
+    }
+
+    public void goToLogin(View view){
+        replaceFragment(new NonAuthorizedFragment());
     }
 
     @Override
@@ -111,8 +115,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == SIGN_IN_CODE  ) {
             if (resultCode == RESULT_OK) {
                 // Аутентификация успешна
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                // Обработка успешной аутентификации
                 replaceFragment(new PersonFragment());
             } else {
                 // Аутентификация не удалась
