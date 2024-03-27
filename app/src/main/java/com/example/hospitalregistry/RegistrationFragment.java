@@ -90,7 +90,12 @@ public class RegistrationFragment extends Fragment {
                                                             FragmentTransaction fragmentTransaction = fm.beginTransaction();
                                                             fragmentTransaction.replace(R.id.frame_layout, new PersonFragment());
                                                             fragmentTransaction.commit();
-                                                        } else {
+                                                        }else{
+                                                            FragmentManager fm = getFragmentManager();
+                                                            assert fm != null;
+                                                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                                                            fragmentTransaction.replace(R.id.frame_layout, new NonAuthorizedFragment());
+                                                            fragmentTransaction.commit();
                                                         }
                                                     }
                                                 });
