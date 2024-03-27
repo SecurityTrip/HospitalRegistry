@@ -11,21 +11,21 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/RegistrationEmailField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/example_email_com"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/RegistrationPasswordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="text" />
+            android:inputType="textPassword" />
 
         <Space
             android:layout_width="match_parent"
