@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         com.example.hospitalregistry.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -30,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        replaceFragment(new QueueFragment());
 
+        replaceFragment(new QueueFragment());
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
 
             int itemId = menuItem.getItemId();
-
+            replaceFragment(new QueueFragment());
             if (itemId == R.id.queue) {
                 replaceFragment(new QueueFragment());
             } else if (itemId == R.id.research) {
