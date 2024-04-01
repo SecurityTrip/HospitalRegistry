@@ -14,6 +14,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hospitalregistry.databinding.ActivityMainBinding;
+import com.example.hospitalregistry.fragments.ClinicsFragment;
+import com.example.hospitalregistry.fragments.HomeFragment;
+import com.example.hospitalregistry.fragments.autorization.NonAuthorizedFragment;
+import com.example.hospitalregistry.fragments.autorization.RegistrationFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -31,25 +35,36 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        replaceFragment(new QueueFragment());
+        replaceFragment(new HomeFragment());
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
 
             int itemId = menuItem.getItemId();
-            replaceFragment(new QueueFragment());
-            if (itemId == R.id.queue) {
-                replaceFragment(new QueueFragment());
-            } else if (itemId == R.id.research) {
-                replaceFragment(new ResearchFragment());
-            } else if (itemId == R.id.call) {
-                replaceFragment(new CallFragment());
-            } else if (itemId == R.id.services) {
-                replaceFragment(new ServicesFragment());
-            } else if (itemId == R.id.profile) {
+//            replaceFragment(new HomeFragment());
+            if (itemId == R.id.home){
+                replaceFragment(new HomeFragment());
+            } else if (itemId == R.id.clinics) {
+                replaceFragment(new ClinicsFragment());
+            }
+//            if (itemId == R.id.queue) {
+//                replaceFragment(new QueueFragment());
+//            } else if (itemId == R.id.research) {
+//                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+//                    // Пользователь не авторизован
+//                    // Переход на NonAuthorizedFragment
+//                    replaceFragment(new NonAuthorizedFragment());
+//                } else {
+//                    // Пользователь авторизован
+//                    replaceFragment(new ResearchFragment());
+//                }
+//            } else if (itemId == R.id.call) {
+//                replaceFragment(new CallFragment());
+//            } else if (itemId == R.id.services) {
+//                replaceFragment(new ServicesFragment());
+//            } 
+            else if (itemId == R.id.profile) {
                 if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                     // Пользователь не авторизован
-                    // Переход на NonAuthorizedFragment
                     replaceFragment(new NonAuthorizedFragment());
                 } else {
                     // Пользователь авторизован

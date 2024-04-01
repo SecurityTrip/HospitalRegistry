@@ -1,17 +1,22 @@
-package com.example.hospitalregistry;
+package com.example.hospitalregistry.fragments;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
+import com.example.hospitalregistry.Employee;
+import com.example.hospitalregistry.EmployeeList;
+import com.example.hospitalregistry.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,14 +26,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class QueueFragment extends Fragment {
-    EmployeeList  EmployeeList;
+    EmployeeList employeeList;
     String[] departaments, doctors;
     AutoCompleteTextView depatamentsDropdown, doctorsDropdown;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     boolean isDepartamentSelected, isDoctorSelected = false;
+    Button regBtn;
 
 
     public QueueFragment() {
@@ -45,21 +52,22 @@ public class QueueFragment extends Fragment {
                              Bundle savedInstanceState) {
         View RootView = inflater.inflate(R.layout.fragment_queue, container, false);
 
-        EmployeeList = new EmployeeList();
+        employeeList = new EmployeeList();
         depatamentsDropdown = (AutoCompleteTextView) RootView.findViewById(R.id.DepartamentsDropdown);
         doctorsDropdown = (AutoCompleteTextView) RootView.findViewById(R.id.DoctorsDropdown);
+        regBtn = (Button) RootView.findViewById(R.id.registerButton);
 
         db.collection("employees")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (isAdded() && task.isSuccessful()) {
+                        if (isAdded() && getContext() != null && task.isSuccessful()) {
                             Set<String> uniqueDepartments = new HashSet<>();
                             Set<String> uniqueDoctors = new HashSet<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Employee tmp = new Employee((String) document.get("departament"), (String) document.get("fullname"));
-                                EmployeeList.add(tmp);
+                                employeeList.add(tmp);
                                 uniqueDepartments.add(tmp.getDepartament());
                                 uniqueDoctors.add(tmp.getFullname());
                             }
@@ -76,34 +84,53 @@ public class QueueFragment extends Fragment {
                     }
                 });
 
-        depatamentsDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        depatamentsDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = departaments[position];
+                Log.d("QueueFragment in depatamentsDropdown", "Selected item: " + selectedItem);
                 isDepartamentSelected = true;
-                // Действия при выборе элемента из списка отделений
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Действия при отсутствии выбора
+                List<String> doctorsArr = new ArrayList<String>();
+                for (int i = 0; i < employeeList.size(); i++){
+                    if(Objects.equals(employeeList.get(i).getDepartament(), selectedItem)){
+                        doctorsArr.add(employeeList.get(i).getFullname());
+                    }
+                }
+                String[] doctorsNew = doctorsArr.toArray(new String[0]);
+                ArrayAdapter<String> doctorsList = new ArrayAdapter<String>(requireActivity(), R.layout.list_item, doctorsNew);
+                doctorsDropdown.setAdapter(doctorsList);
             }
         });
 
-        doctorsDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        doctorsDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = doctors[position];
                 isDoctorSelected = true;
-                // Действия при выборе элемента из списка врачей
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Действия при отсутствии выбора
+                Log.d("QueueFragment in doctorsDropdown", "Selected item: " + selectedItem);
+                List<String> depatamentsArr = new ArrayList<String>();
+                for (int i = 0; i < employeeList.size(); i++){
+                    if(Objects.equals(employeeList.get(i).getFullname(), selectedItem)){
+                        depatamentsArr.add(employeeList.get(i).getDepartament());
+                        break;
+                    }
+                }
+                String[] depatamentsNew = depatamentsArr.toArray(new String[0]);
+                ArrayAdapter<String> doctorsList = new ArrayAdapter<String>(requireActivity(), R.layout.list_item, depatamentsNew);
+                depatamentsDropdown.setAdapter(doctorsList);
             }
         });
 
+        regBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isDepartamentSelected && isDoctorSelected){
+                    Log.d("RegistateButton", "Doctor and Departament Selected");
+                }else {
+                    Log.d("RegistateButton", "Doctor or Departament is not Selected");
+                }
+            }
+        });
 
         return RootView;
     }

@@ -1,4 +1,4 @@
-package com.example.hospitalregistry;
+package com.example.hospitalregistry.fragments.autorization;
 
 import android.os.Bundle;
 
@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.hospitalregistry.PersonFragment;
+import com.example.hospitalregistry.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

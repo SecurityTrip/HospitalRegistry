@@ -26,4 +26,6 @@
     <string name="logout">LogOut</string>
     <string name="password">Password</string>
     <string name="example_email_com">example@email.com</string>
+    <string name="home">Home</string>
+    <string name="clinics">Clinics</string>
 </resources>
