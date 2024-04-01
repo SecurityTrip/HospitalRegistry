@@ -3,6 +3,7 @@ package com.example.hospitalregistry.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.compose.runtime.Composable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
