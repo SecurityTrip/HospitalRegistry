@@ -15,8 +15,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.hospitalregistry.PersonFragment;
 import com.example.hospitalregistry.R;
+import com.example.hospitalregistry.fragments.ProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -90,13 +90,13 @@ public class RegistrationFragment extends Fragment {
                                                             FragmentManager fm = getFragmentManager();
                                                             assert fm != null;
                                                             FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                                                            fragmentTransaction.replace(R.id.frame_layout, new PersonFragment());
+                                                            fragmentTransaction.replace(R.id.frame_layout, new ProfileFragment());
                                                             fragmentTransaction.commit();
                                                         }else{
                                                             FragmentManager fm = getFragmentManager();
                                                             assert fm != null;
                                                             FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                                                            fragmentTransaction.replace(R.id.frame_layout, new NonAuthorizedFragment());
+                                                            fragmentTransaction.replace(R.id.frame_layout, new LoginFragment());
                                                             fragmentTransaction.commit();
                                                         }
                                                     }

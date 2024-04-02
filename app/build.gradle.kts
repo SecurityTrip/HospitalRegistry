@@ -39,10 +39,15 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.0"
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.03.00"))
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.03.00"))
 
     // Choose one of the following:

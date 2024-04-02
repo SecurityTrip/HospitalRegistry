@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HospitalRegistry</string>
+    <string name="settingsTextField">Настройки</string>
+    <string name="logout">Выйти</string>
+    <string name="home">Главная</string>
+    <string name="clinics">Клиники</string>
+    <string name="registration_office">Регистратура</string>
+</resources>

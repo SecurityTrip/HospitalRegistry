@@ -18,4 +18,8 @@
     <string name="example_email_com">example@email.com</string>
     <string name="home">Home</string>
     <string name="clinics">Clinics</string>
+    <string-array name="my_titles">
+        <item>You are signed up</item>
+        <item>Your analyses</item>
+    </string-array>
 </resources>

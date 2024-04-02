@@ -1,4 +1,4 @@
-package com.example.hospitalregistry;
+package com.example.hospitalregistry.custom_types;
 
 public class Employee {
     private String departament;

@@ -15,14 +15,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.hospitalregistry.PersonFragment;
 import com.example.hospitalregistry.R;
+import com.example.hospitalregistry.fragments.ProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class NonAuthorizedFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
     EditText editTextEmail, editTextPassword;
     Button LoginButton;
@@ -30,7 +30,7 @@ public class NonAuthorizedFragment extends Fragment {
     FirebaseAuth mAuth;
     ProgressBar progressBar;
 
-    public NonAuthorizedFragment() {
+    public LoginFragment() {
         // Required empty public constructor
     }
 
@@ -42,7 +42,7 @@ public class NonAuthorizedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View RootView = inflater.inflate(R.layout.fragment_non_authorized, container, false);
+        View RootView = inflater.inflate(R.layout.login_authorized, container, false);
 
         LoginButton = (Button) RootView.findViewById(R.id.LoginButton);
         editTextEmail = (EditText)RootView.findViewById(R.id.LoginEmailField);
@@ -81,7 +81,7 @@ public class NonAuthorizedFragment extends Fragment {
                                         FragmentManager fm = getFragmentManager();
                                         assert fm != null;
                                         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                                        fragmentTransaction.replace(R.id.frame_layout, new PersonFragment());
+                                        fragmentTransaction.replace(R.id.frame_layout, new ProfileFragment());
                                         fragmentTransaction.commit();
                                     } else {
                                     }

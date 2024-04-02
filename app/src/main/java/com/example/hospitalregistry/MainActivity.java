@@ -16,7 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.hospitalregistry.databinding.ActivityMainBinding;
 import com.example.hospitalregistry.fragments.ClinicsFragment;
 import com.example.hospitalregistry.fragments.HomeFragment;
-import com.example.hospitalregistry.fragments.autorization.NonAuthorizedFragment;
+import com.example.hospitalregistry.fragments.ProfileFragment;
+import com.example.hospitalregistry.fragments.autorization.LoginFragment;
 import com.example.hospitalregistry.fragments.autorization.RegistrationFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -40,35 +41,17 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
 
             int itemId = menuItem.getItemId();
-//            replaceFragment(new HomeFragment());
             if (itemId == R.id.home){
                 replaceFragment(new HomeFragment());
             } else if (itemId == R.id.clinics) {
                 replaceFragment(new ClinicsFragment());
-            }
-//            if (itemId == R.id.queue) {
-//                replaceFragment(new QueueFragment());
-//            } else if (itemId == R.id.research) {
-//                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-//                    // Пользователь не авторизован
-//                    // Переход на NonAuthorizedFragment
-//                    replaceFragment(new NonAuthorizedFragment());
-//                } else {
-//                    // Пользователь авторизован
-//                    replaceFragment(new ResearchFragment());
-//                }
-//            } else if (itemId == R.id.call) {
-//                replaceFragment(new CallFragment());
-//            } else if (itemId == R.id.services) {
-//                replaceFragment(new ServicesFragment());
-//            } 
-            else if (itemId == R.id.profile) {
+            } else if (itemId == R.id.profile) {
                 if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                     // Пользователь не авторизован
-                    replaceFragment(new NonAuthorizedFragment());
+                    replaceFragment(new LoginFragment());
                 } else {
                     // Пользователь авторизован
-                    replaceFragment(new PersonFragment());
+                    replaceFragment(new ProfileFragment());
                 }
             }
 
@@ -108,6 +91,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToLogin(View view){
-        replaceFragment(new NonAuthorizedFragment());
+        replaceFragment(new LoginFragment());
     }
 }
