@@ -48,6 +48,8 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.03.00"))
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.03.00"))
 
     // Choose one of the following:
@@ -99,7 +101,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation("com.squareup.picasso:picasso:2.71828")
+
+
+    implementation ("com.google.accompanist:accompanist-coil:0.15.0")
 
 
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))

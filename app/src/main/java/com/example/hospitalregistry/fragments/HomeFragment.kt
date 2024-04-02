@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
                 val title1 = stringResource(id = R.string.registration_office)
                 val painter2 = painterResource(id = R.drawable.call_for_doctor)
                 val title2 = stringResource(id = R.string.call_for_doctor)
-                val titles: List<String> = resources.getStringArray(R.array.my_titles).toList()
+                val titles: List<String> = arrayListOf(resources.getString(R.string.call_for_doctor), resources.getString(R.string.analyses))
 
                 Column(
                     modifier = Modifier
@@ -104,7 +104,6 @@ class HomeFragment : Fragment() {
                                 Color.LightGray,
                                 shape = RoundedCornerShape(15.dp)
                             )
-                            //.background(Color.Red)
 
                     ) {
                         Column {
@@ -128,14 +127,6 @@ class HomeFragment : Fragment() {
             .replace(R.id.frame_layout, fragment)
             .commit()
     }
-
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-            }
-    }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -157,7 +148,7 @@ fun Tile(
             .width(200.dp)
             .padding(5.dp),
         shape = RoundedCornerShape(15.dp),
-        elevation = 5.dp,
+        elevation = 5.dp
     ) {
         Box (
             modifier = Modifier
@@ -210,7 +201,9 @@ fun ListElement(
             .fillMaxWidth()
             .height(50.dp)
     ) {
-        Column {
+        Column(
+            modifier = modifier
+        ) {
             Row(
                 modifier = modifier
                     .fillMaxWidth()

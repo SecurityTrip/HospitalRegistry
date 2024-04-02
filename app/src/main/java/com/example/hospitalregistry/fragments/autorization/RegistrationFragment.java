@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.support.annotation.NonNull;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +74,7 @@ public class RegistrationFragment extends Fragment {
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                public void onComplete( Task<AuthResult> task) {
                                     progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getActivity(), "Registration successful.",
@@ -83,7 +83,7 @@ public class RegistrationFragment extends Fragment {
                                         mAuth.signInWithEmailAndPassword(email, password)
                                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                     @Override
-                                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    public void onComplete(Task<AuthResult> task) {
                                                         progressBar.setVisibility(View.GONE);
                                                         if (task.isSuccessful()) {
                                                             // Sign in success, update UI with the signed-in user's information

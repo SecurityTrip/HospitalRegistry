@@ -1,6 +1,5 @@
 package com.example.hospitalregistry;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -65,25 +64,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
-    }
-
-    public void onArchiveButtonClick(View view)
-    {
-        // выводим сообщение
-        System.out.println("onArchiveButtonClick");
-    }
-
-    public void onSupportButtonClick(View view)
-    {
-        // выводим сообщение
-        System.out.println("onSupportButtonClick");
-    }
-
-    public void onSettingsButtonClick(View view)
-    {
-        // Переход на SettingsActivity
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
     }
 
     public void goToRegistration(View view){

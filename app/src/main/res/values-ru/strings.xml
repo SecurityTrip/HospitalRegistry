@@ -2,8 +2,15 @@
 <resources>
     <string name="app_name">HospitalRegistry</string>
     <string name="settingsTextField">Настройки</string>
+    <string name="backButtonText">Назад</string>
+    <string name="prompt_username">Имя пользователя</string>
     <string name="logout">Выйти</string>
     <string name="home">Главная</string>
     <string name="clinics">Клиники</string>
+    <string name="action_sign_in_short">Войти</string>
     <string name="registration_office">Регистратура</string>
+    <string name="profile">Профиль</string>
+    <string name="signed_in">Ваши записи</string>
+    <string name="analyses">Ваши анализы</string>
+    <string name="call_for_doctor">Вызов врача</string>
 </resources>

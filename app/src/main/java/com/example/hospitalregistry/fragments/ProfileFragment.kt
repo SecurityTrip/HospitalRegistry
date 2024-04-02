@@ -1,72 +1,179 @@
 package com.example.hospitalregistry.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.example.hospitalregistry.R
+import com.google.accompanist.coil.rememberCoilPainter
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
-import java.util.Objects
 
 class ProfileFragment : Fragment() {
-    private var imageView: ImageView? = null
-    private var name: TextView? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_profile, container, false)
-
-        // Find the ImageView by its id
-        val imageView: ImageView = rootView.findViewById(R.id.imageView)
-
-        // Create a Drawable for the placeholder
-        val placeholderDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.avatar)
-
-        // Set the placeholder in ImageView
-        imageView.setImageDrawable(placeholderDrawable)
-
-        // Find the TextView for the name field
-        val nameField: TextView = rootView.findViewById(R.id.nameField)
-
         // Get the current user's display name from FirebaseAuth
         val currentUser = FirebaseAuth.getInstance().currentUser
         val displayName = currentUser?.displayName ?: "Anonymous"
-        nameField.text = displayName
 
         // URL of your avatar
         val avatarUrl = "https://tommystinctures.com/wp-content/uploads/2020/10/avatar-icon-placeholder-1577909.jpg"
 
-        // Load the image using Picasso and set it into ImageView
-        if (placeholderDrawable != null) {
-            Picasso.get()
-                .load(avatarUrl)
-                .placeholder(placeholderDrawable)
-                .into(imageView, object : Callback {
-                    override fun onSuccess() {
-                        // Image loaded successfully
-                    }
 
-                    override fun onError(e: Exception?) {
-                        // Handle error, if any
-                        Log.e("Picasso", "Error loading image: $e")
+        return ComposeView(requireContext()).apply {
+            setContent {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(vertical = 10.dp)
+                        .padding(7.dp)
+                        .background(Color.White)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .height(185.dp)
+                            .fillMaxWidth()
+                            .padding(vertical = 5.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .fillMaxWidth()
+                                    .clip(
+                                        shape = RoundedCornerShape(15.dp),
+
+                                        )
+                                    .border(
+                                        1.dp,
+                                        Color.LightGray,
+                                        shape = RoundedCornerShape(15.dp)
+                                    )
+                            ){
+                                val painter = rememberCoilPainter(request = avatarUrl)
+                                ProfileCard(
+                                    image = painter,
+                                    name = displayName,
+                                    description = "",
+                                    onEditClick = { /*TODO*/ })
+
+                            }
+
+                        }
                     }
-                })
+                    Spacer(modifier = Modifier.height(10.dp)) // Пространство между Box 1 и Box 2
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(
+                                shape = RoundedCornerShape(15.dp),
+
+                                )
+                            .border(
+                                1.dp,
+                                Color.LightGray,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            //.background(color = Color.Red)
+
+                    ) {
+                        Column {
+                            ListElement(
+                                title = resources.getString(R.string.settingsTextField).toString(),
+                                modifier = Modifier
+                                    .background(Color.White)
+                            ){
+                                replaceFragment(SettingsFragment())
+                            }
+                            HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
+
+                        }
+                    }
+                }
+            }
         }
 
-        return rootView
     }
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_layout, fragment)
+            .commit()
+    }
+    
+}
 
+
+@Composable
+fun ProfileCard(
+    image: Painter,
+    name: String,
+    description: String,
+    onEditClick: () -> Unit,
+    shape: Shape = MaterialTheme.shapes.medium
+) {
+    Card(
+        shape = shape,
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+        ) {
+            Image(
+                painter = image,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(80.dp)
+                    .align(Alignment.CenterVertically)
+                    .clip(
+                        shape = RoundedCornerShape(25.dp)
+                    )
+            )
+            Column(
+                modifier = Modifier
+                    .padding(start = 16.dp)
+                    .weight(1f)
+            ) {
+                Text(text = name)
+                Text(text = description)
+            }
+        }
+    }
 }
