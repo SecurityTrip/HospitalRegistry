@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
@@ -83,10 +84,7 @@ class UserDataFragment : Fragment() {
                                 )
                         ) {
                             Column {
-                                Box(
-                                    modifier = Modifier
-                                        .padding(vertical = 5.dp)
-                                ){
+                                Box {
                                     val username = resources.getString(R.string.name)
                                     ListElement(title = username){
                                         showUsernameDialog = true
@@ -105,11 +103,8 @@ class UserDataFragment : Fragment() {
 
                                     )
                                 }
-                                //HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
-                                Box(
-                                    modifier = Modifier
-                                        .padding(vertical = 5.dp)
-                                ) {
+                                HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
+                                Box {
                                     val password = resources.getString(R.string.password)
                                     ListElement(title = password){
                                         showPasswordDialog = true
@@ -127,11 +122,8 @@ class UserDataFragment : Fragment() {
                                         onClose = {showPasswordDialog = it}
                                     )
                                 }
-                                //HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
-                                Box(
-                                    modifier = Modifier
-                                        .padding(vertical = 5.dp)
-                                ) {
+                                HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
+                                Box {
                                     val email = resources.getString(R.string.Email)
                                     ListElement(title = email){
                                         showEmailDialog = true
@@ -173,15 +165,12 @@ class UserDataFragment : Fragment() {
                 displayName = name
             }
 
-            if (user != null) {
-                user!!.updateProfile(profileUpdates)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d("Profile updater", "User name updated.")
-                        }else{
-                            Log.d("Profile updater", "Update user name failed.")
-                        }
-                    }
+            user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("Profile updater", "User name updated.")
+                }else{
+                    Log.d("Profile updater", "Update user name failed.")
+                }
             }
 
         }
@@ -261,7 +250,7 @@ fun ChangeUserData(
                         Button(
                             onClick = {
                                 onDataReturned(text, true)
-                                onClose(!true)
+                                onClose(false)
                             }, // Вызовем функцию обратного вызова с текущим значением текста
                             modifier = Modifier
                                 .fillMaxWidth()
