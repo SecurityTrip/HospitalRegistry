@@ -5,6 +5,7 @@
     <string name="backButtonText">Назад</string>
     <string name="prompt_username">Имя пользователя</string>
     <string name="logout">Выйти</string>
+    <string name="password">Пароль</string>
     <string name="home">Главная</string>
     <string name="clinics">Клиники</string>
     <string name="action_sign_in_short">Войти</string>
@@ -13,4 +14,17 @@
     <string name="signed_in">Ваши записи</string>
     <string name="analyses">Ваши анализы</string>
     <string name="call_for_doctor">Вызов врача</string>
+    <string name="language">Язык</string>
+    <string name="theme">Тема</string>
+    <string name="dark">Темная</string>
+    <string name="light">Светлая</string>
+    <string name="language_change">Смените язык в настройках системы</string>
+    <string name="user_data">Изменить данные пользователя</string>
+    <string name="new_name">Введите новое имя: </string>
+    <string name="name">Имя</string>
+    <string name="apply">Применить</string>
+    <string name="new_password">Введите новый пароль: </string>
+    <string name="new_Email">Введите новый Email: </string>
+    <string name="successfully">Успешно</string>
+    <string name="failed">Произошла ошибка</string>
 </resources>

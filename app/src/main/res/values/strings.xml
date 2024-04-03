@@ -16,7 +16,6 @@
     <string name="login_failed" translatable="false">"Login failed"</string>
     <string name="prompt_username">Username</string>
     <string name="logout">LogOut</string>
-    <string name="password" translatable="false">Password</string>
     <string name="example_email_com" translatable="false">example@email.com</string>
     <string name="home">Home</string>
     <string name="clinics">Clinics</string>
@@ -25,6 +24,21 @@
     <string name="signed_in">You are signed up</string>
     <string name="analyses">Your analyses</string>
     <string name="call_for_doctor">Call for doctor</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="language_change">Change language in your system settings</string>
+    <string name="user_data">Change user data</string>
+    <string name="new_name">Enter new name: </string>
+    <string name="name">Name</string>
+    <string name="apply">Apply</string>
+    <string name="password">Password</string>
+    <string name="new_password">Enter new password: </string>
+    <string name="new_Email">Enter new Email: </string>
+    <string name="Email" translatable="false">Email</string>
+    <string name="successfully">Successfully</string>
+    <string name="failed">Failed</string>
 
 
 </resources>

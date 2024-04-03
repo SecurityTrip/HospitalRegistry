@@ -59,7 +59,6 @@ class HomeFragment : Fragment() {
                 val title1 = stringResource(id = R.string.registration_office)
                 val painter2 = painterResource(id = R.drawable.call_for_doctor)
                 val title2 = stringResource(id = R.string.call_for_doctor)
-                val titles: List<String> = arrayListOf(resources.getString(R.string.call_for_doctor), resources.getString(R.string.analyses))
 
                 Column(
                     modifier = Modifier
@@ -107,11 +106,11 @@ class HomeFragment : Fragment() {
 
                     ) {
                         Column {
-                            ListElement(titles[0]){
+                            ListElement(resources.getString(R.string.signed_in)){
 
                             }
                             HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
-                            ListElement(titles[1]){
+                            ListElement(resources.getString(R.string.analyses)){
 
                             }
                             HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
@@ -120,7 +119,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
     }
     private fun replaceFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()

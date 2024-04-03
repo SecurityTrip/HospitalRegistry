@@ -6,7 +6,6 @@
     <string name="backButtonText">Back</string>
     <string name="prompt_username">Username</string>
     <string name="logout">LogOut</string>
-    <string name="password">Password</string>
     <string name="example_email_com">example@email.com</string>
     <string name="home">Home</string>
     <string name="clinics">Clinics</string>
@@ -14,4 +13,17 @@
     <string name="analyses">Your analyses</string>
     <string name="call_for_doctor">Call for doctor</string>
     <string name="profile">Profile</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="language_change">Change language in your system settings</string>
+    <string name="user_data">Change user data</string>
+    <string name="new_name">Enter new name: </string>
+    <string name="name">Name</string>
+    <string name="apply">Apply</string>
+    <string name="password">Password</string>
+    <string name="new_password">Enter new password: </string>
+    <string name="new_Email" translatable="false">Enter new Email: </string>
+    <string name="Email" translatable="false">Email</string>
+    <string name="successfully">Successfully</string>
+    <string name="failed">Failed</string>
 </resources>

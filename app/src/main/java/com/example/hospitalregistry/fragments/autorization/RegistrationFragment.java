@@ -1,12 +1,6 @@
 package com.example.hospitalregistry.fragments.autorization;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +9,19 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.hospitalregistry.R;
 import com.example.hospitalregistry.fragments.ProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
 
 
 public class RegistrationFragment extends Fragment {
@@ -71,6 +72,8 @@ public class RegistrationFragment extends Fragment {
 
 
                 }else{
+
+
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -86,6 +89,16 @@ public class RegistrationFragment extends Fragment {
                                                     public void onComplete(Task<AuthResult> task) {
                                                         progressBar.setVisibility(View.GONE);
                                                         if (task.isSuccessful()) {
+//                                                            FirebaseUser user = mAuth.getCurrentUser();
+//                                                            if (user != null) {
+//                                                                user.updateProfile(profileUpdates)
+//                                                                        .addOnCompleteListener(task1 -> {
+//                                                                            if (task1.isSuccessful()) {
+//                                                                                // Профиль пользователя успешно обновлен
+//                                                                            }
+//                                                                        });
+//                                                            }
+
                                                             // Sign in success, update UI with the signed-in user's information
                                                             FragmentManager fm = getFragmentManager();
                                                             assert fm != null;

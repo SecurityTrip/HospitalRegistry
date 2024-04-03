@@ -39,6 +39,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.0"
     }
+
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -102,13 +103,11 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-
     implementation ("com.google.accompanist:accompanist-coil:0.15.0")
 
-
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation("com.google.firebase:firebase-database:20.3.1")
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.android.gms:play-services-auth:20.5.0")
