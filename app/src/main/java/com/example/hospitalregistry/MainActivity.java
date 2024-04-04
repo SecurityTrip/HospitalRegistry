@@ -35,7 +35,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        replaceFragment(new HomeFragment());
+        String source = getIntent().getStringExtra("source");
+        if (source != null && source.equals("SettingsActivity")) {
+            replaceFragment(new ProfileFragment());
+            binding.bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
+        } else {
+            replaceFragment(new HomeFragment());
+        }
+
+
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
 

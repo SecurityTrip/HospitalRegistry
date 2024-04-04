@@ -53,6 +53,8 @@ import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import com.example.hospitalregistry.R
 import java.util.Locale
+import android.content.Intent
+import com.example.hospitalregistry.MainActivity
 
 
 class SettingsFragment : Fragment() {
@@ -75,7 +77,11 @@ class SettingsFragment : Fragment() {
                             modifier = Modifier
                         ) {
                             BackButton(onBackPressed = {
-                                replaceFragment(ProfileFragment())
+                                // Создание Intent для перехода к другой активности
+                                val intent = Intent(activity, MainActivity::class.java)
+                                intent.putExtra("source", "SettingsActivity");
+                                // Вызов активности по созданному Intent
+                                startActivity(intent)
                             })
 
                         }

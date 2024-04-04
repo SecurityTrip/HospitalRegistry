@@ -37,6 +37,8 @@ import androidx.fragment.app.Fragment
 import com.example.hospitalregistry.R
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.firebase.auth.FirebaseAuth
+import android.content.Intent
+import com.example.hospitalregistry.SettingsActivity
 
 class ProfileFragment : Fragment() {
     override fun onCreateView(
@@ -117,7 +119,10 @@ class ProfileFragment : Fragment() {
                                 modifier = Modifier
                                     .background(Color.White)
                             ){
-                                replaceFragment(SettingsFragment())
+                                // Создание Intent для перехода к другой активности
+                                val intent = Intent(activity, SettingsActivity::class.java)
+                                // Вызов активности по созданному Intent
+                                startActivity(intent)
                             }
                             HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
 
