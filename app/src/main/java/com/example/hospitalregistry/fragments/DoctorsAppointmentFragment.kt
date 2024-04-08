@@ -9,6 +9,7 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.example.hospitalregistry.custom_types.Employee
 import com.example.hospitalregistry.custom_types.EmployeeList
@@ -25,6 +26,7 @@ class DoctorsAppointmentFragment : Fragment() {
     var isDepartamentSelected = false
     var isDoctorSelected = false
     var regBtn: Button? = null
+    var backBtn: ImageButton? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -39,6 +41,8 @@ class DoctorsAppointmentFragment : Fragment() {
             RootView.findViewById<View>(R.id.DepartamentsDropdown) as AutoCompleteTextView
         doctorsDropdown = RootView.findViewById<View>(R.id.DoctorsDropdown) as AutoCompleteTextView
         regBtn = RootView.findViewById<View>(R.id.registerButton) as Button
+        backBtn = RootView.findViewById<View>(R.id.backButton) as ImageButton
+
         db.collection("employees")
             .get()
             .addOnCompleteListener { task ->
@@ -112,6 +116,15 @@ class DoctorsAppointmentFragment : Fragment() {
                 Log.d("RegistateButton", "Doctor or Departament is not Selected")
             }
         }
+        backBtn!!.setOnClickListener {
+            replaceFragment(HomeFragment())
+        }
+
         return RootView
+    }
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_layout, fragment)
+            .commit()
     }
 }

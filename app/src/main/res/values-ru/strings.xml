@@ -8,6 +8,8 @@
     <string name="password">Пароль</string>
     <string name="home">Главная</string>
     <string name="clinics">Клиники</string>
+    <string name="select_departament">Выберите направление</string>
+    <string name="select_doctor">Выберите врача</string>
     <string name="action_sign_in_short">Войти</string>
     <string name="registration_office">Регистратура</string>
     <string name="profile">Профиль</string>

@@ -97,10 +97,6 @@ class SettingsFragment : Fragment() {
                                 )
                         ) {
                             Column {
-                                var theme: String
-                                var showDialog by remember { mutableStateOf(false) }
-                                var selectedTheme by remember { mutableStateOf(true) }
-
                                 var languageCode: String = Locale.getDefault().language
                                 var languageName = Locale(languageCode).getDisplayLanguage(Locale(languageCode))
                                 languageName = languageName.replaceFirstChar { it.uppercase() }
@@ -111,27 +107,7 @@ class SettingsFragment : Fragment() {
                                 }
                                 HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
 
-                                if (selectedTheme){
-                                    //System.out.println("light")
-                                    AppCompatDelegate.MODE_NIGHT_NO
-                                    theme = resources.getString(R.string.light)
-                                }else{
-                                    // System.out.println("dark")
-                                    AppCompatDelegate.MODE_NIGHT_YES
-                                    theme = resources.getString(R.string.dark)
-                                }
 
-//                                TextsInBox(leftText = resources.getString(R.string.theme), rightText = theme){
-//                                    showDialog = true
-//                                }
-//                                HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
-//                                ThemeSelectionDialog(
-//                                    dark =  resources.getString(R.string.dark),
-//                                    light =  resources.getString(R.string.light),
-//                                    showDialog = showDialog,
-//                                    onDismiss = { showDialog = false },
-//                                    onThemeSelected = { selectedTheme = it; showDialog = false }
-//                                )
                                 TextsInBox(leftText = resources.getString(R.string.user_data), rightText = ""){
                                     replaceFragment(UserDataFragment())
                                 }

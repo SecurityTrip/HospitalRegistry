@@ -26,4 +26,6 @@
     <string name="Email" translatable="false">Email</string>
     <string name="successfully">Successfully</string>
     <string name="failed">Failed</string>
+    <string name="select_departament">Select Departament</string>
+    <string name="select_doctor">Select Doctor</string>
 </resources>
