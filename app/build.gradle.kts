@@ -105,6 +105,9 @@ dependencies {
 
     implementation ("com.google.accompanist:accompanist-coil:0.15.0")
 
+    implementation ("com.ibm.icu:icu4j:74.2")
+    implementation("org.apache.commons:commons-lang3:3.14.0")
+
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-database:20.3.1")

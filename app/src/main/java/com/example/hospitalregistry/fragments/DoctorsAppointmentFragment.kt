@@ -15,6 +15,7 @@ import com.example.hospitalregistry.custom_types.Employee
 import com.example.hospitalregistry.custom_types.EmployeeList
 import com.example.hospitalregistry.R
 import com.google.firebase.firestore.FirebaseFirestore
+import com.example.hospitalregistry.custom_types.Transliter;
 
 class DoctorsAppointmentFragment : Fragment() {
     var employeeList: EmployeeList? = null
@@ -62,7 +63,12 @@ class DoctorsAppointmentFragment : Fragment() {
                         uniqueDoctors.add(tmp.fullname)
                     }
                     departaments = uniqueDepartments.toTypedArray<String>()
+                    departaments = Transliter.translateArr(departaments)
                     doctors = uniqueDoctors.toTypedArray<String>()
+                    doctors = Transliter.translateArr(doctors)
+                    departaments.sort()
+                    doctors.sort()
+
                     val departamentsList =
                         ArrayAdapter(requireActivity(), R.layout.list_item, departaments)
                     val doctorsList =
