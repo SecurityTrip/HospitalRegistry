@@ -1,4 +1,4 @@
-package com.example.hospitalregistry.custom_types;
+package com.example.hospitalregistry.custom;
 
 import java.util.ArrayList;
 import java.util.List;

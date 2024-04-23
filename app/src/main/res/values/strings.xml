@@ -41,6 +41,17 @@
     <string name="failed">Failed</string>
     <string name="select_departament">Select Departament</string>
     <string name="select_doctor">Select Doctor</string>
+    <string name="login_button_text">Login</string>
+    <string name="registration_field_text">Registration</string>
+    <string name="register_button_text">Register</string>
+    <string name="login_field_text">Login</string>
+    <string name="make_an_appointment">Make an appointment</string>
+    <string name="departament_and_doctor_are_not_selected">Departament and Doctor are not selected</string>
+    <string name="departament_not_selected">Departament is not selected</string>
+    <string name="doctor_not_selected">Doctor is not selected</string>
+    <string name="any_doctor">Any doctor</string>
+    <string name="need_to_login">Firstly you need to login</string>
+    <string name="select_date">Select date</string>
 
 
 </resources>

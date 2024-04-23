@@ -53,7 +53,7 @@ public class RegistrationFragment extends Fragment {
         RegistrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
+
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
                 mAuth = FirebaseAuth.getInstance();
@@ -72,8 +72,7 @@ public class RegistrationFragment extends Fragment {
 
 
                 }else{
-
-
+                    progressBar.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override

@@ -10,6 +10,7 @@
     <string name="clinics">Клиники</string>
     <string name="select_departament">Выберите направление</string>
     <string name="select_doctor">Выберите врача</string>
+    <string name="login_button_text">Войти</string>
     <string name="action_sign_in_short">Войти</string>
     <string name="registration_office">Регистратура</string>
     <string name="profile">Профиль</string>
@@ -29,4 +30,14 @@
     <string name="new_Email">Введите новый Email: </string>
     <string name="successfully">Успешно</string>
     <string name="failed">Произошла ошибка</string>
+    <string name="registration_field_text">Регистрация</string>
+    <string name="register_button_text">Зарегистрироваться</string>
+    <string name="login_field_text">Вход</string>
+    <string name="make_an_appointment">Записаться</string>
+    <string name="departament_and_doctor_are_not_selected">Направление и врач не выбраны</string>
+    <string name="departament_not_selected">Направление не выбрано</string>
+    <string name="doctor_not_selected">Врач не выбран</string>
+    <string name="any_doctor">Любой врач</string>
+    <string name="need_to_login">Сначала нужно войти</string>
+    <string name="select_date">Выберите дату</string>
 </resources>

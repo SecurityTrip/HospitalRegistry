@@ -1,4 +1,4 @@
-package com.example.hospitalregistry.custom_types;
+package com.example.hospitalregistry.custom;
 import com.ibm.icu.text.Transliterator;
 import java.util.Locale;
 

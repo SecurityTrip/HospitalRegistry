@@ -50,7 +50,7 @@ public class LoginFragment extends Fragment {
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
+
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
                 mAuth = FirebaseAuth.getInstance();
@@ -69,6 +69,7 @@ public class LoginFragment extends Fragment {
 
 
                 }else{
+                    progressBar.setVisibility(View.VISIBLE);
                     mAuth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override

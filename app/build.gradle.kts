@@ -115,5 +115,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.android.gms:play-services-auth:20.5.0")
 
+    // https://mvnrepository.com/artifact/com.wdullaer/materialdatetimepicker
+    implementation("com.wdullaer:materialdatetimepicker:4.2.3")
 
 }
