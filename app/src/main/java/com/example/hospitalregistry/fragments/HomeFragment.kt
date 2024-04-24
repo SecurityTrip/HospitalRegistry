@@ -1,6 +1,7 @@
 package com.example.hospitalregistry.fragments
 
 //noinspection UsingMaterialAndMaterial3Libraries
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import com.example.hospitalregistry.R
+import com.example.hospitalregistry.UserInfoActivity
 import com.example.hospitalregistry.fragments.autorization.LoginFragment
 import com.google.firebase.auth.FirebaseAuth
 
@@ -135,13 +137,20 @@ class HomeFragment : Fragment() {
                         Column {
                             ListElement(resources.getString(R.string.signed_in)){
                                 Thread.sleep(150)
-                                replaceFragment(RegistrationsFragment())
+                                val intent = Intent(activity, UserInfoActivity::class.java)
+                                intent.putExtra("target", "registration");
+                                // Вызов активности по созданному Intent
+                                startActivity(intent)
                             }
                             HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
-//                            ListElement(resources.getString(R.string.analyses)){
-//
-//                            }
-//                            HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
+                            ListElement(resources.getString(R.string.analyses)){
+                            val intent = Intent(activity, UserInfoActivity::class.java)
+                            intent.putExtra("target", "analysis");
+                            // Вызов активности по созданному Intent
+                            startActivity(intent)
+
+                            }
+                            HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
                         }
                     }
                 }

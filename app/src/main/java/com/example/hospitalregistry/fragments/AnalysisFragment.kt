@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
@@ -27,7 +26,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -35,18 +33,19 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.example.hospitalregistry.MainActivity
-import com.example.hospitalregistry.custom.RegistrationElement
+import com.example.hospitalregistry.custom.AnalysisElement
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class RegistrationsFragment : Fragment() {
+class AnalysisFragment : Fragment() {
     private var db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         return ComposeView(requireContext()).apply {
             setContent {
                 Column(
@@ -76,57 +75,61 @@ class RegistrationsFragment : Fragment() {
                             .clip(RoundedCornerShape(15.dp))
                             .border(1.dp, Color.LightGray, shape = RoundedCornerShape(15.dp))
                     ) {
-                        var registrationsList by remember { mutableStateOf<List<RegistrationElement>>(emptyList()) }
 
-                        db.collection("registrations")
+                        var analysisList by remember { mutableStateOf<List<AnalysisElement>>(emptyList()) }
+
+                        db.collection("analysis")
                             .whereEqualTo("id", FirebaseAuth.getInstance().currentUser?.uid)
                             .get()
                             .addOnSuccessListener { documents ->
-                                val fetchedRegistrationsList = mutableListOf<RegistrationElement>()
+                                val fetchedAnalysisList = mutableListOf<AnalysisElement>()
                                 for (document in documents) {
-                                    val tmp = RegistrationElement(
-                                        document["doctor"] as String?,
-                                        document["date"] as String?,
-                                        document["time"] as String?
-                                    )
-                                    fetchedRegistrationsList.add(tmp)
+                                    val tmp = (document["value"] as String?)?.let {
+                                        (document["title"] as String?)?.let { it1 ->
+                                            AnalysisElement(
+                                                it1,
+                                                it
+                                            )
+                                        }
+                                    }
+                                    if (tmp != null) {
+                                        fetchedAnalysisList.add(tmp)
+                                    }
                                 }
-                                registrationsList = fetchedRegistrationsList // Обновляем значение registrationsList
+                                analysisList = fetchedAnalysisList // Обновляем значение registrationsList
                             }
                             .addOnFailureListener { exception ->
                                 // Handle error
                             }
-
-
-                        if (registrationsList.isEmpty()) {
-                            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                        
+                        if (analysisList.isEmpty()) {
+                            Text(text = "У Вас пока нет данных анализов"
+                            , modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp))
                         } else {
-                            RegistrationsList(registrationsList)
+                            AnalysisList(analysisList)
                         }
                     }
                 }
             }
         }
     }
-
-
 }
 
 @Composable
-fun RegistrationsList(registrations: List<RegistrationElement>) {
+fun AnalysisList(analysisList: List<AnalysisElement>) {
     Column {
-        for (registration in registrations) {
-            RegistrationsListElement(registration.doctor, registration.date, registration.time)
+        for (analysis in analysisList) {
+            AnalysisListElement(analysis.getTitle(), analysis.getValue())
             HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
         }
     }
 }
 
 @Composable
-fun RegistrationsListElement(
-    doctor: String,
-    date: String,
-    time: String
+fun AnalysisListElement(
+    title: String,
+    value: String,
+
 ) {
     Card(
         modifier = Modifier
@@ -143,7 +146,7 @@ fun RegistrationsListElement(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Врач: $doctor, Дата: $date, Время: $time",
+                    text = "Врач: $title, Дата: $value",
                     modifier = Modifier
                         .padding(vertical = 10.dp, horizontal = 10.dp)
                 )

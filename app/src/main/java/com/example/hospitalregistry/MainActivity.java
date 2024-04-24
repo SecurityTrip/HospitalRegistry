@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
             replaceFragment(new HomeFragment());
         }
 
-
-
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
 
             int itemId = menuItem.getItemId();
@@ -61,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new ProfileFragment());
                 }
             }
-
-
             return true;
         });
     }
