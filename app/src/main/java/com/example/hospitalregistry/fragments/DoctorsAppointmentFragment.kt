@@ -37,6 +37,7 @@ class DoctorsAppointmentFragment : Fragment(), DateTimePickerFragment.OnDateTime
     private var c_day: Int = 0
     private var c_hourOfDay: Int = 0
     private var c_minute: Int = 0
+    private var time: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,7 @@ class DoctorsAppointmentFragment : Fragment(), DateTimePickerFragment.OnDateTime
 
     private fun makeRegistation(year: Int, month: Int, day: Int, hourOfDay: Int, minute: Int) {
         val date = "$day.$month.$year"
-        val time = "$hourOfDay:$minute"
+        time = "$hourOfDay:$minute"
         val id = FirebaseAuth.getInstance().currentUser?.uid
 
         val data = hashMapOf(
@@ -68,10 +69,17 @@ class DoctorsAppointmentFragment : Fragment(), DateTimePickerFragment.OnDateTime
             .add(data)
             .addOnSuccessListener { documentReference ->
                 Log.d("Registration", "DocumentSnapshot written with ID: ${documentReference.id}")
+                Toast.makeText(
+                    activity, "Вы успешно записались к врачу", Toast.LENGTH_SHORT
+                ).show()
             }
             .addOnFailureListener { e ->
                 Log.w("Registration", "Error adding document", e)
+                Toast.makeText(
+                    activity, "Произошла ошибка, попробуйте позже", Toast.LENGTH_SHORT
+                ).show()
             }
+
     }
 
     override fun onCreateView(
@@ -154,8 +162,6 @@ class DoctorsAppointmentFragment : Fragment(), DateTimePickerFragment.OnDateTime
                 )
                 val selectDateButton: Button = RootView.findViewById(com.example.hospitalregistry.R.id.date_time_btn)
                 selectDateButton.visibility = View.VISIBLE;
-
-
             }
 
         val selectDateButton: Button = RootView.findViewById(com.example.hospitalregistry.R.id.date_time_btn)
@@ -168,27 +174,18 @@ class DoctorsAppointmentFragment : Fragment(), DateTimePickerFragment.OnDateTime
         }
 
         regBtn!!.setOnClickListener {
-            if(!isDepartamentSelected && !isDoctorSelected){
-                Log.d("RegistateButton", "Departament and Doctor are not selected")
-                val toastMessage: String = activity?.getString(com.example.hospitalregistry.R.string.departament_and_doctor_are_not_selected) ?: ""
-                Toast.makeText(
-                    activity, toastMessage,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else if (!isDoctorSelected) {
+            if (!isDoctorSelected) {
                 Log.d("RegistateButton", "Doctor is not selected")
                 val toastMessage: String = activity?.getString(com.example.hospitalregistry.R.string.doctor_not_selected) ?: ""
                 Toast.makeText(
                     activity, toastMessage,
                     Toast.LENGTH_SHORT
                 ).show()
-
             }
         }
         backBtn!!.setOnClickListener {
             replaceFragment(HomeFragment())
         }
-
         return RootView
     }
     private fun replaceFragment(fragment: Fragment) {

@@ -108,8 +108,6 @@ class RegistrationsFragment : Fragment() {
             }
         }
     }
-
-
 }
 
 @Composable
