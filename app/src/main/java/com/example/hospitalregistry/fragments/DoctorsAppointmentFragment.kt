@@ -184,16 +184,6 @@ class DoctorsAppointmentFragment : Fragment(), DateTimePickerFragment.OnDateTime
                 ).show()
 
             }
-            //TODO datetime selector
-            if(isDoctorSelected){
-
-                Toast.makeText(
-                    activity, "Departament and Doctor are selected",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-
         }
         backBtn!!.setOnClickListener {
             replaceFragment(HomeFragment())
